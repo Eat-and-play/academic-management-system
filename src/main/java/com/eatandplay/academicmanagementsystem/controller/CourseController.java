@@ -23,12 +23,6 @@ public class CourseController {
     this.courseService = courseService;
   }
 
-  /**
-   * 通过id查询用户信息
-   *
-   * @param id id
-   * @return course
-   */
   @Operation(method = "GET", summary = "通过Id查询Course")
   @GetMapping("/Course/{id}")
   public Course courseInfo(@PathVariable("id") Integer id) {
