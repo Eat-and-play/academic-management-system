@@ -2,6 +2,7 @@ package com.eatandplay.academicmanagementsystem.repository;
 
 import com.eatandplay.academicmanagementsystem.model.Student;
 import java.util.List;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -25,8 +26,10 @@ public interface StudentMapper {
   @Update("UPDATE t_student set name = #{name} where id = #{id}")
   void editStudent(Student student);
 
+  @Delete("DELETE FROM t_student where id = #{id}")
+  void deleteStudent(int id);
+
   @Select("SELECT * FROM t_student limit #{limit} offset #{offset}")
-  @Options()
   List<Student> findAll(int limit, int offset);
 
   @Select("SELECT COUNT(*) FROM t_student")

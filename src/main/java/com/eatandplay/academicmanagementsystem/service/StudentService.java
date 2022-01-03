@@ -27,6 +27,10 @@ public class StudentService {
     studentMapper.editStudent(student);
   }
 
+  public void deleteStudent(int id) {
+    studentMapper.deleteStudent(id);
+  }
+
   public List<Student> list(int pageNum, int size) {
     return studentMapper.findAll(size, pageNum == 0 ? pageNum : size * pageNum);
   }

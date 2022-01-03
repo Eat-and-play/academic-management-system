@@ -9,8 +9,10 @@ import com.eatandplay.academicmanagementsystem.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,12 +62,19 @@ public class StudentController {
    * @return id
    */
   @Operation(method = "POST", summary = "修改Student")
-  @PutMapping("/student/{id}")
+  @PostMapping("/student/{id}")
   public CommonResp editStudent(
       @PathVariable("id") Integer id, @RequestBody AddStudentReq addStudentReq) {
     Student student = new Student(id, addStudentReq.getName(), null, null);
     studentService.editStudent(student);
     return CommonResp.ok(String.format("学生 Id: %s 信息修改成功", student.getId()));
+  }
+
+  @Operation(method = "DELETE", summary = "删除Student")
+  @DeleteMapping("/student/{id}")
+  public CommonResp deleteStudent(@PathVariable("id") Integer id) {
+    studentService.deleteStudent(id);
+    return CommonResp.ok(String.format("学生 Id: %s 信息删除成功", id));
   }
 
   /**
