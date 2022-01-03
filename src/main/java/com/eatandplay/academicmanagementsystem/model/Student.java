@@ -19,7 +19,7 @@ public class Student {
 
   private String name;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime createTime;
 
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
