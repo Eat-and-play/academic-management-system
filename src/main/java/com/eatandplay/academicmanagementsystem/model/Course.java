@@ -7,11 +7,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/** Course Entity. */
+/**
+ * Course Entity.
+ *
+ * @author GongZeqing
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Course {
 
   private int id;
@@ -24,6 +27,11 @@ public class Course {
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime updateTime;
 
+  /**
+   * @param id id
+   * @param name name
+   * @return Course
+   */
   public static Course of(Integer id, String name) {
     LocalDateTime now = LocalDateTime.now();
     return new Course(id, name, now, now);

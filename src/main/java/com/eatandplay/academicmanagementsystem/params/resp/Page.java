@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * 分页对象.
+ * 分页对象
+ *
+ * @param <T> T
+ * @author tuxzx
  */
 @Data
 @AllArgsConstructor

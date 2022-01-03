@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Course Controller. */
+/**
+ * Course Controller
+ *
+ * @author GongZeqing
+ */
 @Tag(name = "Course")
 @RestController
 public class CourseController {
@@ -20,7 +24,7 @@ public class CourseController {
   }
 
   /**
-   * 通过id查询用户信息.
+   * 通过id查询用户信息
    *
    * @param id id
    * @return course

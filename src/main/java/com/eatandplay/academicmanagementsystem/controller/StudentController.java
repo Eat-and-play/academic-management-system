@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Student Controller. */
+/**
+ * Student Controller
+ *
+ * @author tuxzx
+ */
 @Tag(name = "Student")
 @RestController
 public class StudentController {
@@ -29,7 +33,7 @@ public class StudentController {
   }
 
   /**
-   * 通过id查询用户信息.
+   * 通过id查询用户信息
    *
    * @param id id
    * @return student
@@ -41,7 +45,7 @@ public class StudentController {
   }
 
   /**
-   * 添加Student.
+   * 添加Student
    *
    * @param addStudentReq req
    * @return id
@@ -55,7 +59,7 @@ public class StudentController {
   }
 
   /**
-   * 修改Student信息.
+   * 修改Student信息
    *
    * @param id id
    * @param addStudentReq req
@@ -70,6 +74,12 @@ public class StudentController {
     return CommonResp.ok(String.format("学生 Id: %s 信息修改成功", student.getId()));
   }
 
+  /**
+   * 删除Student
+   *
+   * @param id id
+   * @return student
+   */
   @Operation(method = "DELETE", summary = "删除Student")
   @DeleteMapping("/student/{id}")
   public CommonResp deleteStudent(@PathVariable("id") Integer id) {
@@ -78,7 +88,7 @@ public class StudentController {
   }
 
   /**
-   * 分页查询 Student.
+   * 分页查询 Student
    *
    * @param pageReq req
    * @return list
