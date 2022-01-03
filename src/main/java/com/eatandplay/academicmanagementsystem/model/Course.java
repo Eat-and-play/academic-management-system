@@ -1,6 +1,8 @@
-package com.eatandplay.academicmanagementsystem.entity;
+package com.eatandplay.academicmanagementsystem.model;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,9 +15,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Course {
+
   private int id;
+
   private String name;
-  private LocalDateTime createName;
+
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+  private LocalDateTime createTime;
+
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime updateTime;
 
   public static Course of(Integer id, String name) {

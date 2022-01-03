@@ -1,6 +1,6 @@
 package com.eatandplay.academicmanagementsystem.service;
 
-import com.eatandplay.academicmanagementsystem.entity.Course;
+import com.eatandplay.academicmanagementsystem.model.Course;
 import com.eatandplay.academicmanagementsystem.repository.CourseMapper;
 import org.springframework.stereotype.Service;
 

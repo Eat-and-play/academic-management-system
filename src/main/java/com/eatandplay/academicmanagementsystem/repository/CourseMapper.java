@@ -1,9 +1,7 @@
 package com.eatandplay.academicmanagementsystem.repository;
 
-import com.eatandplay.academicmanagementsystem.entity.Course;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.eatandplay.academicmanagementsystem.model.Course;
+import org.apache.ibatis.annotations.*;
 
 /** Course Mapper. */
 @Mapper
