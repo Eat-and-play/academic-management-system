@@ -4,4 +4,6 @@ spring:
     url: jdbc:mysql://www.mj2song.cn:3306/ams01?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
-
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    date-format: yyyy-MM-dd HH:mm:ss
