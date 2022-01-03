@@ -6,23 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/** Student Entity. */
+
+/** Course Entity. */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Student {
-
-  private Integer id;
-
+public class Course {
+  private int id;
   private String name;
-
-  private LocalDateTime createTime;
-
+  private LocalDateTime createName;
   private LocalDateTime updateTime;
 
-  public static Student of(Integer id, String name) {
+  public static Course of(Integer id, String name) {
     LocalDateTime now = LocalDateTime.now();
-    return new Student(id, name, now, now);
+    return new Course(id, name, now, now);
   }
 }
