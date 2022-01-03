@@ -1,8 +1,8 @@
 package com.eatandplay.academicmanagementsystem.model;
 
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,6 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Student {
 
   private Integer id;
@@ -25,8 +24,21 @@ public class Student {
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime updateTime;
 
-  public static Student of(Integer id, String name) {
+  /**
+   * Student .
+   *
+   * @param name name
+   * @param createTime time
+   * @param updateTime time
+   */
+  public Student(String name, LocalDateTime createTime, LocalDateTime updateTime) {
+    this.name = name;
+    this.createTime = createTime;
+    this.updateTime = updateTime;
+  }
+
+  public static Student of(String name) {
     LocalDateTime now = LocalDateTime.now();
-    return new Student(id, name, now, now);
+    return new Student(name, now, now);
   }
 }

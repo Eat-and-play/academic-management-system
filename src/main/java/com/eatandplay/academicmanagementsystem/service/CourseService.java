@@ -4,9 +4,7 @@ import com.eatandplay.academicmanagementsystem.model.Course;
 import com.eatandplay.academicmanagementsystem.repository.CourseMapper;
 import org.springframework.stereotype.Service;
 
-/**
- * Course Service.
- */
+/** Course Service. */
 @Service
 public class CourseService {
   private final CourseMapper courseMapper;

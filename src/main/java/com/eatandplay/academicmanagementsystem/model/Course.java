@@ -1,13 +1,11 @@
 package com.eatandplay.academicmanagementsystem.model;
 
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 
 /** Course Entity. */
 @Data
