@@ -5,10 +5,9 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
- * Course Entity.
+ * Course Entity
  *
  * @author GongZeqing
  */
@@ -27,13 +26,18 @@ public class Course {
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime updateTime;
 
+  public Course(String name, LocalDateTime createTime, LocalDateTime updateTime) {
+    this.name = name;
+    this.createTime = createTime;
+    this.updateTime = updateTime;
+  }
+
   /**
-   * @param id id
    * @param name name
    * @return Course
    */
-  public static Course of(Integer id, String name) {
+  public static Course of(String name) {
     LocalDateTime now = LocalDateTime.now();
-    return new Course(id, name, now, now);
+    return new Course(name, now, now);
   }
 }

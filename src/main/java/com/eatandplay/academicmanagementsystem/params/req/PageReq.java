@@ -22,7 +22,7 @@ public class PageReq {
 
   /**
    * @param pageNum pageNum
-   * @param size size
+   * @param size    size
    * @return Page Object
    */
   public static PageReq of(int pageNum, int size) {
