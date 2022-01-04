@@ -23,6 +23,8 @@ public class CourseController {
     this.courseService = courseService;
   }
 
+
+
   @Operation(method = "GET", summary = "通过Id查询Course")
   @GetMapping("/Course/{id}")
   public Course courseInfo(@PathVariable("id") Integer id) {
