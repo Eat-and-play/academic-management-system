@@ -60,7 +60,7 @@ public class StudentService {
    * 分页查询
    *
    * @param pageNum pageNum
-   * @param size size
+   * @param size    size
    * @return 学生列表
    */
   public List<Student> list(int pageNum, int size) {

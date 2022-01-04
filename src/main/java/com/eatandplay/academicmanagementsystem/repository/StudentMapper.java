@@ -2,13 +2,7 @@ package com.eatandplay.academicmanagementsystem.repository;
 
 import com.eatandplay.academicmanagementsystem.model.Student;
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 /**
  * Student Mapper
@@ -55,7 +49,7 @@ public interface StudentMapper {
   /**
    * 分页查询
    *
-   * @param limit limit
+   * @param limit  limit
    * @param offset offset
    * @return student list
    */

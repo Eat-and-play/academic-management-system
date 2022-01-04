@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
  *
  * @author tuxzx
  */
+@SuppressWarnings("checkstyle:SummaryJavadoc")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
