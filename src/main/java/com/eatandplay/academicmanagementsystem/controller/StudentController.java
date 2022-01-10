@@ -9,6 +9,7 @@ import com.eatandplay.academicmanagementsystem.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author tuxzx
  */
+@CrossOrigin
 @Tag(name = "Student")
 @RestController
 public class StudentController {
@@ -33,7 +35,7 @@ public class StudentController {
    * @return student
    */
   @Operation(method = "GET", summary = "通过Id查询Student")
-  @GetMapping("/student/{id}")
+  @GetMapping(value = "/student/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
   public Student studentInfo(@PathVariable("id") Integer id) {
     return studentService.queryStudentById(id);
   }
@@ -45,7 +47,7 @@ public class StudentController {
    * @return id
    */
   @Operation(method = "PUT", summary = "增加Student")
-  @PutMapping("/student")
+  @PutMapping(value = "/student")
   public CommonResp addStudent(@RequestBody AddStudentReq addStudentReq) {
     Student student = Student.of(addStudentReq.getName());
     studentService.addStudent(student);
@@ -91,7 +93,7 @@ public class StudentController {
   @GetMapping("/student/list")
   public Page<List<Student>> list(PageReq pageReq) {
     int count = studentService.count();
-    List<Student> result = studentService.list(pageReq.getPageNum(), pageReq.getSize());
-    return new Page<>(pageReq.getPageNum(), pageReq.getSize(), count, result);
+    List<Student> result = studentService.list(pageReq.getPage(), pageReq.getSize());
+    return new Page<>(pageReq.getPage(), pageReq.getSize(), count, result);
   }
 }

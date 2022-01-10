@@ -11,13 +11,12 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-@Schema(name = "PageReq", title = "分页")
 public class PageReq {
 
-  @Schema(name = "pageNum", title = "页码", required = true)
-  private int pageNum;
+  @Schema(title = "页码", required = true)
+  private int page;
 
-  @Schema(name = "size", title = "大小", required = true)
+  @Schema(title = "大小", required = true)
   private int size;
 
   /**

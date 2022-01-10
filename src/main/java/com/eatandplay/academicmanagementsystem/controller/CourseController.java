@@ -1,9 +1,7 @@
 package com.eatandplay.academicmanagementsystem.controller;
 
 import com.eatandplay.academicmanagementsystem.model.Course;
-import com.eatandplay.academicmanagementsystem.model.Student;
 import com.eatandplay.academicmanagementsystem.params.req.AddCourseReq;
-import com.eatandplay.academicmanagementsystem.params.req.AddStudentReq;
 import com.eatandplay.academicmanagementsystem.params.req.PageReq;
 import com.eatandplay.academicmanagementsystem.params.resp.CommonResp;
 import com.eatandplay.academicmanagementsystem.params.resp.Page;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author GongZeqing
  */
+@CrossOrigin
 @Tag(name = "Course")
 @RestController
 public class CourseController {
@@ -35,7 +34,7 @@ public class CourseController {
    * @return course
    */
   @Operation(method = "GET", summary = "通过Id查询Course")
-  @GetMapping("/Course/{id}")
+  @GetMapping("/course/{id}")
   public Course courseInfo(@PathVariable("id") Integer id) {
     return courseService.queryCourseById(id);
   }
@@ -95,7 +94,7 @@ public class CourseController {
   @GetMapping("/course/list")
   public Page<List<Course>> list(PageReq pageReq) {
     int count = courseService.count();
-    List<Course> result = courseService.list(pageReq.getPageNum(), pageReq.getSize());
-    return new Page<>(pageReq.getPageNum(), pageReq.getSize(), count, result);
+    List<Course> result = courseService.list(pageReq.getPage(), pageReq.getSize());
+    return new Page<>(pageReq.getPage(), pageReq.getSize(), count, result);
   }
 }

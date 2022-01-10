@@ -8,11 +8,13 @@ import com.eatandplay.academicmanagementsystem.params.resp.SelectDto;
 import com.eatandplay.academicmanagementsystem.service.SelectService;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class SelectController {
 
