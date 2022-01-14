@@ -2,7 +2,13 @@ package com.eatandplay.academicmanagementsystem.repository;
 
 import com.eatandplay.academicmanagementsystem.model.Course;
 import java.util.List;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * Course Mapper
@@ -32,9 +38,9 @@ public interface CourseMapper {
 
 
   /**
-   *修改课程
+   * 修改课程
    *
-   *  @param course course
+   * @param course course
    */
   @Update("UPDATE t_course set name = #{name} where id = #{id}")
   void editCourse(Course course);

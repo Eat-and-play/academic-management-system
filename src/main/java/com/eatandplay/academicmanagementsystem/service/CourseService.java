@@ -1,7 +1,6 @@
 package com.eatandplay.academicmanagementsystem.service;
 
 import com.eatandplay.academicmanagementsystem.model.Course;
-import com.eatandplay.academicmanagementsystem.model.Student;
 import com.eatandplay.academicmanagementsystem.repository.CourseMapper;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -59,7 +58,7 @@ public class CourseService {
    * 分页查询
    *
    * @param pageNum pageNum
-   * @param size size
+   * @param size    size
    * @return course
    */
   public List<Course> list(int pageNum, int size) {

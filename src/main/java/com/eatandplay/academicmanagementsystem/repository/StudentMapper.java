@@ -2,7 +2,14 @@ package com.eatandplay.academicmanagementsystem.repository;
 
 import com.eatandplay.academicmanagementsystem.model.Student;
 import java.util.List;
-import org.apache.ibatis.annotations.*;
+import java.util.Optional;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * Student Mapper
@@ -17,7 +24,7 @@ public interface StudentMapper {
    * @return Student
    */
   @Select("SELECT * FROM t_student WHERE id = #{id}")
-  Student findById(@Param("id") Integer id);
+  Optional<Student> findById(@Param("id") Integer id);
 
   /**
    * 添加学生

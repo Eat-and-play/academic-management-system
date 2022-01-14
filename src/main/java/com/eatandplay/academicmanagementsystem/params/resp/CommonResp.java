@@ -18,7 +18,7 @@ public class CommonResp {
    * @param msg msg
    * @return CommonResp
    */
-  public static CommonResp ok(String msg) {
+  public static CommonResp of(String msg) {
     return new CommonResp(0, msg);
   }
 }

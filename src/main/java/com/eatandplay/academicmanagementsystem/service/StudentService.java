@@ -3,6 +3,7 @@ package com.eatandplay.academicmanagementsystem.service;
 import com.eatandplay.academicmanagementsystem.model.Student;
 import com.eatandplay.academicmanagementsystem.repository.StudentMapper;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,7 +26,7 @@ public class StudentService {
    * @param studentId id
    * @return Student
    */
-  public Student queryStudentById(Integer studentId) {
+  public Optional<Student> queryStudentById(Integer studentId) {
     return studentMapper.findById(studentId);
   }
 

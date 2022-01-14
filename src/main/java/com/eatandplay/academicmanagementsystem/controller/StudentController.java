@@ -8,9 +8,17 @@ import com.eatandplay.academicmanagementsystem.params.resp.Page;
 import com.eatandplay.academicmanagementsystem.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.time.LocalDateTime;
 import java.util.List;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Student Controller
@@ -35,9 +43,26 @@ public class StudentController {
    * @return student
    */
   @Operation(method = "GET", summary = "通过Id查询Student")
-  @GetMapping(value = "/student/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public Student studentInfo(@PathVariable("id") Integer id) {
-    return studentService.queryStudentById(id);
+  @GetMapping(value = "/student/{id}")
+  public ResponseEntity<Student> studentInfo(@PathVariable("id") Integer id) {
+    // case 01:
+    //    Student student = studentService.queryStudentById(id);
+    //    if (student == null) {
+    //      return ResponseEntity.notFound().build();
+    //    }
+    //    return ResponseEntity.ok(student);
+
+    // case 02
+    //    Optional<Student> studentOpt = studentService.queryStudentById(id);
+    //    if (!studentOpt.isPresent()) {
+    //      return ResponseEntity.notFound().build();
+    //    }
+    //    return ResponseEntity.ok(studentOpt.get());
+
+    // case 03
+    return studentService.queryStudentById(id)
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.notFound().build());
   }
 
   /**
@@ -46,12 +71,12 @@ public class StudentController {
    * @param addStudentReq req
    * @return id
    */
-  @Operation(method = "PUT", summary = "增加Student")
-  @PutMapping(value = "/student")
+  @Operation(method = "POST", summary = "增加Student")
+  @PostMapping(value = "/student")
   public CommonResp addStudent(@RequestBody AddStudentReq addStudentReq) {
     Student student = Student.of(addStudentReq.getName());
     studentService.addStudent(student);
-    return CommonResp.ok(String.format("学生 Id: %s 添加成功", student.getId()));
+    return CommonResp.of(String.format("学生 Id: %s 添加成功", student.getId()));
   }
 
   /**
@@ -61,13 +86,13 @@ public class StudentController {
    * @param addStudentReq req
    * @return id
    */
-  @Operation(method = "POST", summary = "修改Student")
-  @PostMapping("/student/{id}")
+  @Operation(method = "PATCH", summary = "修改Student")
+  @PatchMapping("/student/{id}")
   public CommonResp editStudent(
       @PathVariable("id") Integer id, @RequestBody AddStudentReq addStudentReq) {
-    Student student = new Student(id, addStudentReq.getName(), null, null);
+    Student student = new Student(id, addStudentReq.getName(), null, LocalDateTime.now());
     studentService.editStudent(student);
-    return CommonResp.ok(String.format("学生 Id: %s 信息修改成功", student.getId()));
+    return CommonResp.of(String.format("学生 Id: %s 信息修改成功", student.getId()));
   }
 
   /**
@@ -80,7 +105,7 @@ public class StudentController {
   @DeleteMapping("/student/{id}")
   public CommonResp deleteStudent(@PathVariable("id") Integer id) {
     studentService.deleteStudent(id);
-    return CommonResp.ok(String.format("学生 Id: %s 信息删除成功", id));
+    return CommonResp.of(String.format("学生 Id: %s 信息删除成功", id));
   }
 
   /**

@@ -36,7 +36,7 @@ public class SelectController {
   public CommonResp select(@RequestBody SelectReq req) {
     SelectRelation selectRelation = new SelectRelation(req.getStudentId(), req.getCourseId());
     if (selectService.select(selectRelation)) {
-      return CommonResp.ok(String.format("学生 %s 选课 %s", req.getStudentId(), req.getCourseId()));
+      return CommonResp.of(String.format("学生 %s 选课 %s", req.getStudentId(), req.getCourseId()));
     }
     return null;
   }

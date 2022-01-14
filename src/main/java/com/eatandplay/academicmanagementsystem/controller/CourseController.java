@@ -9,7 +9,14 @@ import com.eatandplay.academicmanagementsystem.service.CourseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Course Controller
@@ -40,7 +47,6 @@ public class CourseController {
   }
 
 
-
   /**
    * 添加Course
    *
@@ -52,13 +58,13 @@ public class CourseController {
   public CommonResp addCourse(@RequestBody AddCourseReq addCourseReq) {
     Course course = Course.of(addCourseReq.getName());
     courseService.addCourse(course);
-    return CommonResp.ok(String.format("课程 Id: %s 添加成功", course.getId()));
+    return CommonResp.of(String.format("课程 Id: %s 添加成功", course.getId()));
   }
 
   /**
    * 修改Course信息
    *
-   * @param id            id
+   * @param id           id
    * @param addCourseReq req
    * @return id
    */
@@ -68,7 +74,7 @@ public class CourseController {
       @PathVariable("id") Integer id, @RequestBody AddCourseReq addCourseReq) {
     Course course = new Course(id, addCourseReq.getName(), null, null);
     courseService.editCourse(course);
-    return CommonResp.ok(String.format("学生 Id: %s 信息修改成功", course.getId()));
+    return CommonResp.of(String.format("学生 Id: %s 信息修改成功", course.getId()));
   }
 
   /**
@@ -81,7 +87,7 @@ public class CourseController {
   @DeleteMapping("/course/{id}")
   public CommonResp deleteCourse(@PathVariable("id") Integer id) {
     courseService.deleteCourse(id);
-    return CommonResp.ok(String.format("课程 Id: %s 信息删除成功", id));
+    return CommonResp.of(String.format("课程 Id: %s 信息删除成功", id));
   }
 
   /**

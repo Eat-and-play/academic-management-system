@@ -40,10 +40,11 @@ public interface SelectMapper {
    * @param offset offset
    * @return result
    */
-  @Select("SELECT s.id student_id, s.name student_name, c.id course_id, c.name course_name FROM t_select t "
-      + "LEFT JOIN t_student s on s.id = t.student_id "
-      + "LEFT JOIN t_course c on c.id = t.course_id "
-      + "limit #{limit} offset #{offset}")
+  @Select(
+      "SELECT s.id student_id, s.name student_name, c.id course_id, c.name course_name FROM t_select t "
+          + "LEFT JOIN t_student s on s.id = t.student_id "
+          + "LEFT JOIN t_course c on c.id = t.course_id "
+          + "limit #{limit} offset #{offset}")
   List<SelectDto> findAll(int limit, int offset);
 
   /**
