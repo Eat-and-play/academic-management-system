@@ -3,6 +3,8 @@ package com.eatandplay.academicmanagementsystem.repository;
 import com.eatandplay.academicmanagementsystem.model.SelectRelation;
 import com.eatandplay.academicmanagementsystem.params.resp.SelectDto;
 import java.util.List;
+import java.util.Optional;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -31,7 +33,7 @@ public interface SelectMapper {
       + "LEFT JOIN t_student s on s.id = t.student_id "
       + "LEFT JOIN t_course c on c.id = t.course_id "
       + "where t.student_id = #{studentId} and t.course_id = #{courseId}")
-  SelectDto findById(Integer studentId, Integer courseId);
+  Optional<SelectDto> findById(Integer studentId, Integer courseId);
 
   /**
    * 分页查询

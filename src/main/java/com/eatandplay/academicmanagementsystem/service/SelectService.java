@@ -4,6 +4,8 @@ import com.eatandplay.academicmanagementsystem.model.SelectRelation;
 import com.eatandplay.academicmanagementsystem.params.resp.SelectDto;
 import com.eatandplay.academicmanagementsystem.repository.SelectMapper;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,7 +34,7 @@ public class SelectService {
    * @param courseId  id
    * @return course
    */
-  public SelectDto selectInfo(int studentId, int courseId) {
+  public Optional<SelectDto> selectInfo(int studentId, int courseId) {
     return selectMapper.findById(studentId, courseId);
   }
 

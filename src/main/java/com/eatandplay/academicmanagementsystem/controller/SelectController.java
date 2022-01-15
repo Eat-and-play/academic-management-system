@@ -8,11 +8,8 @@ import com.eatandplay.academicmanagementsystem.params.resp.SelectDto;
 import com.eatandplay.academicmanagementsystem.service.SelectService;
 import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
@@ -31,8 +28,8 @@ public class SelectController {
    * @param req 选课参数
    * @return result
    */
-  @Operation(method = "PUT", summary = "学生选课")
-  @PutMapping("/select")
+  @Operation(method = "POST", summary = "学生选课")
+  @PostMapping("/select")
   public CommonResp select(@RequestBody SelectReq req) {
     SelectRelation selectRelation = new SelectRelation(req.getStudentId(), req.getCourseId());
     if (selectService.select(selectRelation)) {
@@ -48,8 +45,11 @@ public class SelectController {
    */
   @Operation(method = "GET", summary = "查询选课信息")
   @GetMapping("/select")
-  public SelectDto selectInfo(int studentId, int courseId) {
-    return selectService.selectInfo(studentId, courseId);
+  public ResponseEntity<SelectDto> selectInfo(int studentId, int courseId) {
+    return selectService.selectInfo(studentId, courseId)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
+
   }
 
   /**
