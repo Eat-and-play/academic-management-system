@@ -2,6 +2,7 @@ package com.eatandplay.academicmanagementsystem.repository;
 
 import com.eatandplay.academicmanagementsystem.model.Course;
 import java.util.List;
+import java.util.Optional;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,7 +24,7 @@ public interface CourseMapper {
    * @return Course
    */
   @Select("SELECT * FROM t_course WHERE id = #{id}")
-  Course findById(@Param("id") Integer id);
+  Optional<Course> findById(@Param("id") Integer id);
 
 
   /**

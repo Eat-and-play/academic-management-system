@@ -9,14 +9,8 @@ import com.eatandplay.academicmanagementsystem.service.CourseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Course Controller
@@ -42,8 +36,10 @@ public class CourseController {
    */
   @Operation(method = "GET", summary = "通过Id查询Course")
   @GetMapping("/course/{id}")
-  public Course courseInfo(@PathVariable("id") Integer id) {
-    return courseService.queryCourseById(id);
+  public ResponseEntity<Course> courseInfo(@PathVariable("id") Integer id) {
+    return courseService.queryCourseById(id)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
   }
 
 
@@ -53,8 +49,8 @@ public class CourseController {
    * @param addCourseReq req
    * @return id
    */
-  @Operation(method = "PUT", summary = "增加Course")
-  @PutMapping("/course")
+  @Operation(method = "POST", summary = "增加Course")
+  @PostMapping("/course")
   public CommonResp addCourse(@RequestBody AddCourseReq addCourseReq) {
     Course course = Course.of(addCourseReq.getName());
     courseService.addCourse(course);
@@ -68,8 +64,8 @@ public class CourseController {
    * @param addCourseReq req
    * @return id
    */
-  @Operation(method = "POST", summary = "修改Course")
-  @PostMapping("/course/{id}")
+  @Operation(method = "PATCH", summary = "修改Course")
+  @PatchMapping("/course/{id}")
   public CommonResp editCourse(
       @PathVariable("id") Integer id, @RequestBody AddCourseReq addCourseReq) {
     Course course = new Course(id, addCourseReq.getName(), null, null);

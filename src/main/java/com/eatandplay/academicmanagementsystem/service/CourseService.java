@@ -3,6 +3,7 @@ package com.eatandplay.academicmanagementsystem.service;
 import com.eatandplay.academicmanagementsystem.model.Course;
 import com.eatandplay.academicmanagementsystem.repository.CourseMapper;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,7 +23,7 @@ public class CourseService {
    * @param courseId id
    * @return Course
    */
-  public Course queryCourseById(Integer courseId) {
+  public Optional<Course> queryCourseById(Integer courseId) {
     return courseMapper.findById(courseId);
   }
 
